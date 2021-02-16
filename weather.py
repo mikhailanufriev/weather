@@ -38,7 +38,22 @@ def get_text_messages(message):
     if message.text.lower() == 'погода':
             bot.send_message(message.from_user.id, 'погода сегодня супер, на улице {0}'.format(data['weather'][0]['description']))
             bot.send_message(message.from_user.id, 'температура сейчас, {0}'.format(data['main']['temp']))
-   
+
     else:
         bot.send_message(message.from_user.id, 'Все будет хорошо, {0}'.format(message.from_user.first_name))
+
+@bot.message_handler(commands=['weather'])
+def help_command(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.add(
+        telebot.types.InlineKeyboardButton(
+            'Message the developer', url='telegram.me/mvanufriev'
+  )
+    )
+    bot.send_message(
+        message.chat.id, bot.send_message(message.from_user.id, 'температура сейчас, {0}'.format(data['main']['temp']))
+        ,
+        reply_markup=keyboard
+    )
+
 bot.polling(none_stop=True)
