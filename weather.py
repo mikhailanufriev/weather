@@ -47,8 +47,7 @@ def weather_command(message):
     keyboard = telebot.types.InlineKeyboardMarkup()
 
     bot.send_message(
-        message.chat.id, 'температура сейчас, {0}'.format(data['main']['temp'])
-        ,
+        message.chat.id, 'пока не работает',
         reply_markup=keyboard
     )
 
