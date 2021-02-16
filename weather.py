@@ -47,7 +47,7 @@ def get_text_messages(message):
             data = res.json()
             for i in data['list']:
                 bot.send_message(message.from_user.id, 'сообщаю прогноз погоды ')
-                bot.send_message( i['dt_txt'], '{0:+3.0f}'.format(i['main']['temp']), i['weather'][0]['description'] )
+                bot.send_message(message.from_user.id, i['dt_txt'], '{0:+3.0f}'.format(i['main']['temp']), i['weather'][0]['description'] )
         except Exception as e:
             print("Exception (forecast):", e)
             pass
