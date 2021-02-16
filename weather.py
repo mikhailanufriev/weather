@@ -38,8 +38,8 @@ def get_text_messages(message):
     if message.text.lower() == 'погода':
         bot.send_message(message.from_user.id, 'погода сегодня супер, на улице {0}'.format(data['weather'][0]['description']))
         bot.send_message(message.from_user.id, 'температура сейчас, {0}'.format(data['main']['temp']))
-       # if int(data['main']['temp'])<0:
-        #   bot.send_message(message.from_user.id, 'зима')
+        if data['main']['temp']<0:
+           bot.send_message(message.from_user.id, 'зима')
     elif message.text.lower() == 'прогноз':
         bot.send_message(message.from_user.id, 'сообщаю прогноз погоды ')
         try:
