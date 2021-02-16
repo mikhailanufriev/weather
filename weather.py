@@ -43,15 +43,11 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, 'Все будет хорошо, {0}'.format(message.from_user.first_name))
 
 @bot.message_handler(commands=['weather'])
-def help_command(message):
+def weather_command(message):
     keyboard = telebot.types.InlineKeyboardMarkup()
-    keyboard.add(
-        telebot.types.InlineKeyboardButton(
-            'Message the developer', url='telegram.me/mvanufriev'
-  )
-    )
+
     bot.send_message(
-        message.chat.id, bot.send_message(message.from_user.id, 'температура сейчас, {0}'.format(data['main']['temp']))
+        message.chat.id, 'температура сейчас, {0}'.format(data['main']['temp'])
         ,
         reply_markup=keyboard
     )
