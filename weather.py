@@ -37,8 +37,8 @@ def send_welcome(message):
 
 def start(message):
     if message.text == '/weather':
-            bot.send_message(message.from_user.id, 'погода сегодня супер, на улице {0}'.format(data['weather'][0]['description']))
-            bot.send_message(message.from_user.id, 'температура сейчас, {0}'.format(data['main']['temp']))
+            bot.send_message(message.chat.id, 'погода сегодня супер, на улице {0}'.format(data['weather'][0]['description']))
+            bot.send_message(message.chat.id, 'температура сейчас, {0}'.format(data['main']['temp']))
     else:
-        bot.send_message(message.from_user.id, 'Напиши /weather');
+        bot.send_message(message.chat.id, 'Напиши /weather');
 bot.polling(none_stop=True)
