@@ -42,18 +42,16 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, 'температура максимальная, {0}'.format(data['main']['temp_max']))
     elif message.text.lower() == 'прогноз':
         bot.send_message(message.from_user.id, 'сообщаю прогноз погоды ')
-
+        try:
+            res = requests.get("http://api.openweathermap.org/data/2.5/forecast",
+                        params={'id': city_id, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
+            data = res.json()
+            for i in data['list']:
+                weather_result = str(( i['dt_txt'], '{0:+3.0f}'.format(i['main']['temp']), i['weather'][0]['description'] ))
+                bot.send_message(message.from_user.id, weather_result)
+        except Exception as e:
+            print("Exception (forecast):", e)
+            pass
     else:
         bot.send_message(message.from_user.id, 'Все будет хорошо, {0}'.format(message.from_user.first_name))
 bot.polling(none_stop=True)
-
-
-try:
-    res = requests.get("http://api.openweathermap.org/data/2.5/forecast",
-                 params={'id': city_id, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
-    data = res.json()
-    for i in data['list']:
-        print( i['dt_txt'], '{0:+3.0f}'.format(i['main']['temp']), i['weather'][0]['description'] )
-except Exception as e:
-        print("Exception (forecast):", e)
-        pass
