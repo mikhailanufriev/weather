@@ -31,14 +31,15 @@ import telebot
 bot = telebot.TeleBot('1604047228:AAF6L-8hNLABgiEaomjBtokHKWFv1LAbPdY')
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-         bot.reply_to(message, f'Я бот. Приятно познакомиться, {message.from_user.first_name}')
+         bot.reply_to(message, f'Я бот - метеоролог. Приятно познакомиться, {message.from_user.first_name}' + ' используй /weather')
 
 @bot.message_handler(content_types=['text'])
 
 def start(message):
     if message.text == '/weather':
-            bot.send_message(message.chat.id, 'погода сегодня супер, на улице {0}'.format(data['weather'][0]['description']))
-            bot.send_message(message.chat.id, 'температура сейчас, {0}'.format(data['main']['temp']))
+        bot.send_message(message.chat.id, 'в городе {0}'.format(city_id))
+        bot.send_message(message.chat.id, 'погода сегодня супер, на улице {0}'.format(data['weather'][0]['description']) + ' градусов C')
+        bot.send_message(message.chat.id, 'температура сейчас, {0}'.format(data['main']['temp']))
     else:
-        bot.send_message(message.chat.id, 'Напиши /weather');
+        bot.send_message(message.chat.id, 'Напиши /weather')
 bot.polling(none_stop=True)
