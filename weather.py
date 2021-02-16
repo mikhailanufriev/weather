@@ -42,7 +42,7 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, 'температура максимальная, {0}'.format(data['main']['temp_max']))
     elif message.text.lower() == 'прогноз':
         bot.send_message(message.from_user.id, 'сообщаю прогноз погоды ')
-        
+
     else:
         bot.send_message(message.from_user.id, 'Все будет хорошо, {0}'.format(message.from_user.first_name))
 bot.polling(none_stop=True)
