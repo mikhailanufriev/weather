@@ -34,13 +34,7 @@ def send_welcome(message):
          bot.reply_to(message, f'Я бот. Приятно познакомиться, {message.from_user.first_name}')
 
 @bot.message_handler(content_types=['text'])
-def get_text_messages(message):
-    if message.text.lower() == 'погода':
-            bot.send_message(message.from_user.id, 'погода сегодня супер, на улице {0}'.format(data['weather'][0]['description']));
-            bot.send_message(message.from_user.id, 'температура сейчас, {0}'.format(data['main']['temp']))
 
-    else:
-        bot.send_message(message.from_user.id, 'Все будет хорошо, {0}'.format(message.from_user.first_name))
 def start(message):
     if message.text == '/weather':
             bot.send_message(message.from_user.id, 'погода сегодня супер, на улице {0}'.format(data['weather'][0]['description']))
